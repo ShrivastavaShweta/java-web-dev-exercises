@@ -3,6 +3,8 @@ package org.launchcode.java.demos.lsn3classes1;
 // Start working here with your Student class.
 // To instantiate the Student class, add your code to the main in the file, SchoolPractice.
 
+import java.util.Objects;
+
 public class Student {
 
     private String name;
@@ -47,5 +49,37 @@ public class Student {
 
     void setGpa(double gpa) {
         this.gpa = gpa;
+    }
+
+    public String getGradeLevel(int credits){
+        if (credits <= 29){
+            return "Freshman";
+        } else if(credits <= 59){
+            return "Sophomore";
+        } else if (credits <= 89){
+            return "Junior";
+        } else {
+            return "Senior";
+        }
+    }
+
+    public void addGrade(int credit, double grade){
+        double totalQualityScore = this.gpa * this.numberOfCredits;
+        totalQualityScore += grade * credit;
+        this.numberOfCredits += credit;
+        this.gpa = totalQualityScore / this.numberOfCredits;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return studentId == student.studentId && numberOfCredits == student.numberOfCredits && Double.compare(student.gpa, gpa) == 0 && name.equals(student.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, studentId, numberOfCredits, gpa);
     }
 }
