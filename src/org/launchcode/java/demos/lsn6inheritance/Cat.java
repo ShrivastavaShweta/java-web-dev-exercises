@@ -11,6 +11,11 @@ public class Cat {
 
     public Cat (double aWeight) {
         weight = aWeight;
+        this.hungry = hungry;
+    }
+
+    public Cat (){
+        weight = 13;
     }
 
     /**** Getters and Setters ****/
